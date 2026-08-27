@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
+
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(esp-idf-http-ota)
+
+idf_build_set_property(COMPILE_OPTIONS "-DCONFIG_MODE" APPEND)

@@ -1,0 +1,21 @@
+menu "Application Configuration"
+
+	config ESP_WIFI_SSID
+		string "WiFi SSID"
+		default "myssid"
+		help
+			SSID (network name) for the example to connect to.
+
+	config ESP_WIFI_PASSWORD
+		string "WiFi Password"
+		default "mypassword"
+		help
+			WiFi password (WPA or WPA2) for the example to use.
+
+	config MDNS_HOSTNAME
+		string "mDNS Hostname"
+		default "esp32-server"
+		help
+			The mDNS host name used by the ESP32.
+
+endmenu

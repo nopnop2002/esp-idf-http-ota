@@ -1,0 +1,28 @@
+menu "Application Configuration"
+
+	config MQTT_BROKER
+		string "MQTT Broker"
+		default "broker.emqx.io"
+		help
+			Host name or IP address of the broker to connect to
+
+	config MQTT_PORT_TCP
+		int "MQTT Port"
+		range 0 65535
+		default 1883
+		help
+			Port number of the broker to connect to.
+
+	config MQTT_PUB_TOPIC
+		string "Publish Topic"
+		default "/topic/test"
+		help
+			Topic of publish
+
+	config PUBLISH_INTERVAL
+		int "Publish Interval(Second)"
+		default 5
+		help
+			Set the Interval of Publish.
+
+endmenu
