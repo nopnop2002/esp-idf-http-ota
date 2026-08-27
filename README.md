@@ -84,3 +84,9 @@ curl --progress-bar -X POST --data-binary @build/esp-idf-http-ota.bin http://esp
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/d9fb654f-aecb-4660-a146-c6584a32d0d2" />
 
 
+# Find an IP address using ping
+- For Windows   
+	<img width="749" height="485" alt="Image" src="https://github.com/user-attachments/assets/7be5a181-f74d-4874-9fb2-be5c93a21495" />
+
+- For Linux   
+	<img width="755" height="486" alt="Image" src="https://github.com/user-attachments/assets/17dd850d-937d-4a9f-ae33-94cfb9fb2e93" />
