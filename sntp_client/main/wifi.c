@@ -1,4 +1,5 @@
-/*	WiFi station Example
+/*
+	Initialize WiFi 
 
 	This example code is in the Public Domain (or CC0 licensed, at your option.)
 
@@ -97,6 +98,7 @@ esp_err_t wifi_init_sta(char *ssid, char *passwd)
 		},
 	};
 #endif
+
 	wifi_config_t wifi_config = {0};
 	strcpy((char *)wifi_config.sta.ssid, ssid);
 	strcpy((char *)wifi_config.sta.password, passwd);
@@ -198,9 +200,8 @@ wifi_mode_t wifi_init(void)
 	nvs_handle_t my_handle;
 	ESP_ERROR_CHECK(nvs_open("storage", NVS_READWRITE, &my_handle));
 
-	nvs_type_t out_type;
-#ifndef CONFIG_MODE
 	// Find Key
+	nvs_type_t out_type;
 	ret = nvs_find_key(my_handle, "wifi_mode_ap", &out_type);
 	ESP_LOGI(TAG, "nvs_find_key ret=%d", ret);
 	if (ret == ESP_OK) {
@@ -208,7 +209,6 @@ wifi_mode_t wifi_init(void)
 		// Erase key
 		ESP_ERROR_CHECK(nvs_erase_key(my_handle, "wifi_mode_ap"));
 	}
-#endif
 
 	if (wifi_mode == WIFI_MODE_STA) {
 		ESP_LOGI(TAG, "Stating WIFI_MODE_STA");
@@ -244,7 +244,6 @@ wifi_mode_t wifi_init(void)
 			// Initialize mDNS
 			initialize_mdns(hostname);
 	
-#ifdef CONFIG_MODE
 			// Erase key
 			ret = nvs_find_key(my_handle, "wifi_mode_ap", &out_type);
 			ESP_LOGI(TAG, "nvs_find_key ret=%d", ret);
@@ -252,6 +251,7 @@ wifi_mode_t wifi_init(void)
 				ESP_ERROR_CHECK(nvs_erase_key(my_handle, "wifi_mode_ap"));
 			}
 
+#ifdef CONFIG_MODE
 			// Write key
 			ESP_ERROR_CHECK(nvs_set_str(my_handle, "wifi_ssid", ssid));
 			ESP_ERROR_CHECK(nvs_set_str(my_handle, "wifi_passwd", passwd));
@@ -260,13 +260,11 @@ wifi_mode_t wifi_init(void)
 #endif
 	
 		} else {
-#ifndef CONFIG_MODE
 			// Use AP mode on the next startup.
 			ESP_ERROR_CHECK(nvs_set_i16(my_handle, "wifi_mode_ap", 1));
 			ESP_ERROR_CHECK(nvs_commit(my_handle));
-#endif
 			nvs_close(my_handle);
-			ESP_LOGW(TAG, "Station mode initialize fail. Restart Now");
+			ESP_LOGW(TAG, "Station mode initialize fail. Restart Now.");
 			vTaskDelay(1000);
 			esp_restart();
 		}
@@ -278,6 +276,13 @@ wifi_mode_t wifi_init(void)
 		// Initialize WiFi AP
 		ret = wifi_init_ap();
 		ESP_LOGI(TAG, "wifi_init_ap ret=%d", ret);
+
+		// Erase key
+		ret = nvs_find_key(my_handle, "wifi_mode_ap", &out_type);
+		ESP_LOGI(TAG, "nvs_find_key ret=%d", ret);
+		if (ret == ESP_OK) {
+			ESP_ERROR_CHECK(nvs_erase_key(my_handle, "wifi_mode_ap"));
+		}
 	} // WIFI_MODE_AP
 
 	// Close NVS
