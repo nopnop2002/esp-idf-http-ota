@@ -84,9 +84,17 @@ curl --progress-bar -X POST --data-binary @build/esp-idf-http-ota.bin http://esp
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/d9fb654f-aecb-4660-a146-c6584a32d0d2" />
 
 
-# Find an IP address using ping
-- For Windows   
-	<img width="749" height="485" alt="Image" src="https://github.com/user-attachments/assets/7be5a181-f74d-4874-9fb2-be5c93a21495" />
+# If the connection in station mode fails
+If the device fails to start in station mode upon startup, it connects in AP mode.   
+If the device is restarted after connecting in AP mode, it will attempt to connect in Station mode again.   
 
-- For Linux   
-	<img width="755" height="486" alt="Image" src="https://github.com/user-attachments/assets/17dd850d-937d-4a9f-ae33-94cfb9fb2e93" />
+- Launch the firmware   
+	The firmware attempts to connect in station mode.   
+
+- Connection failed in station mode   
+	Restart the device and start Wi-Fi in AP mode.   
+	Cannot connect to the Internet.   
+
+- Restart the firmware   
+	The firmware attempts to connect in station mode again.   
+

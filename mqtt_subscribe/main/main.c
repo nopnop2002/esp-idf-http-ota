@@ -1,20 +1,21 @@
 #include <string.h>
 
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
-#include <esp_ota_ops.h>
-#include <esp_log.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_wifi.h"
+#include "esp_ota_ops.h"
+#include "esp_log.h"
 
 static const char *TAG = "MAIN";
 
-void wifi_init();
+wifi_mode_t wifi_init();
 esp_err_t http_server_init(void);
 void client(void *pvParameters);
 
 void app_main(void)
 {
 	// Initialize WiFi
-	wifi_init();
+	wifi_mode_t wifi_mode = wifi_init();
 
 	// Initialize http server
 	ESP_ERROR_CHECK(http_server_init());
@@ -31,6 +32,9 @@ void app_main(void)
 	}
 
 	// Start client task
-	xTaskCreate(&client, "CLIENT", 1024*4, NULL, 5, NULL);
+	if (wifi_mode == WIFI_MODE_STA) {
+		xTaskCreate(&client, "CLIENT", 1024*4, NULL, 5, NULL);
+	}
+
 	while(1) vTaskDelay(10);
 }
