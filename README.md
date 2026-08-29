@@ -92,7 +92,7 @@ If the device is restarted after connecting in AP mode, it will attempt to conne
 	The firmware attempts to connect in station mode.   
 
 - Connection failed in station mode   
-	The firmware will restart.   
+	The firmware will automatically restart.   
 	The firmware attempts to connect in AP mode.   
 	Cannot connect to the Internet.   
 
