@@ -96,6 +96,6 @@ If the device is restarted after connecting in AP mode, it will attempt to conne
 	The firmware attempts to connect in AP mode.   
 	Cannot connect to the Internet.   
 
-- Restart the firmware   
+- Reset while in AP mode   
 	The firmware attempts to connect in station mode again.   
 
