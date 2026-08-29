@@ -94,7 +94,7 @@ If the device is restarted after connecting in AP mode, it will attempt to conne
 - Failed to connect in station mode   
 	The firmware will automatically restart.   
 	The firmware attempts to connect in AP mode.   
-	Cannot connect to the Internet.   
+	The internet is unavailable.   
 	You can use OTA via AP mode.   
 	Open http://192.168.4.1 in your web browser.   
 
@@ -102,6 +102,6 @@ If the device is restarted after connecting in AP mode, it will attempt to conne
 	The firmware attempts to connect in station mode again.   
 
 - Successfully connected in station mode   
-	Can connect to the Internet.   
+	The internet is available.   
 	You can use OTA via Station mode.   
 	Open http://esp32-server.local in your web browser.   
