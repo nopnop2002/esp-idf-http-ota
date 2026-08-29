@@ -95,6 +95,8 @@ If the device is restarted after connecting in AP mode, it will attempt to conne
 	The firmware will automatically restart.   
 	The firmware attempts to connect in AP mode.   
 	Cannot connect to the Internet.   
+	You can use OTA via AP mode.   
+	Open http://192.168.4.1 in your web browser.   
 
 - Reset while in AP mode   
 	The firmware attempts to connect in station mode again.   
