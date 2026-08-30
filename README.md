@@ -96,7 +96,8 @@ If the device is restarted after connecting in AP mode, it will attempt to conne
 	The firmware attempts to connect in AP mode.   
 	The internet is unavailable.   
 	You can use OTA via AP mode.   
-	Open http://192.168.4.1 in your web browser.   
+	The ESP32 broadcasts an open WiFi network with SSID ```ESP32 OTA Update```.   
+	Connect to it and open http://192.168.4.1 in your web browser.   
 
 - Reset while in AP mode   
 	The firmware attempts to connect in station mode again.   
